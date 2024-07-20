@@ -10,7 +10,7 @@
 
 BlackHole is a modern macOS virtual audio loopback driver that allows applications to pass audio to other applications with zero additional latency.
 
-### [Download Installer](https://existential.audio/blackhole) 
+### [Download Installer](https://existential.audio/blackhole)
 
 ### [Join the Discord Server](https://discord.gg/y8BWfnWRnn)
 
@@ -67,16 +67,16 @@ Sponsor: https://github.com/sponsors/ExistentialAudio
 ### Option 2: Manually Uninstall
 
 1. Delete the BlackHole driver with the terminal command:
-   
-    `rm -R /Library/Audio/Plug-Ins/HAL/BlackHoleXch.driver` 
-   
+
+   `rm -R /Library/Audio/Plug-Ins/HAL/BlackHoleXch.driver`
+
    Be sure to replace `X` with either `2`, `16`, or `64`.
-   
+
    Note that the directory is the root `/Library` not `/Users/user/Library`.
 
 2. Restart CoreAudio with the terminal command:
 
-    `sudo killall -9 coreaudiod`
+   `sudo killall -9 coreaudiod`
 
 For more specific details [visit the Wiki](https://github.com/ExistentialAudio/BlackHole/wiki/Uninstallation).
 
@@ -104,7 +104,7 @@ For more specific details [visit the Wiki](https://github.com/ExistentialAudio/B
 
 1. [Setup Multi-Output Device](https://github.com/ExistentialAudio/BlackHole/wiki/Multi-Output-Device)
 2. In `Audio MIDI Setup` → `Audio Devices` right-click on the newly created Multi-Output and select "Use This Device For Sound Output"
-3. Open digital audio workstation (DAW) such as GarageBand and set input device to "BlackHole" 
+3. Open digital audio workstation (DAW) such as GarageBand and set input device to "BlackHole"
 4. Set track to input from channel 1-2
 5. Play audio from another application and monitor or record in your DAW
 
@@ -112,15 +112,17 @@ For more specific details [visit the Wiki](https://github.com/ExistentialAudio/B
 
 1. Set output driver to "BlackHole" in sending application
 2. Output audio to any channel
-3. Open receiving application and set input device to "BlackHole" 
+3. Open receiving application and set input device to "BlackHole"
 4. Input audio from the corresponding output channels
 
 ## Developer Guides
 
 ### A license is required for all non-GPLv3 projects
+
 Please support our hard work and continued development. To request a license [contact Existential Audio](mailto:devinroth@existential.audio).
 
 ### Build & Install
+
 After building, to install BlackHole:
 
 1. Copy or move the built `BlackHoleXch.driver` bundle to `/Library/Audio/Plug-Ins/HAL`
@@ -150,7 +152,7 @@ kNumber_Of_Channels
 kSampleRates
 ```
 
-They can be specified at build time with `xcodebuild` using `GCC_PREPROCESSOR_DEFINITIONS`. 
+They can be specified at build time with `xcodebuild` using `GCC_PREPROCESSOR_DEFINITIONS`.
 
 Example:
 
@@ -160,16 +162,17 @@ xcodebuild \
   GCC_PREPROCESSOR_DEFINITIONS='$GCC_PREPROCESSOR_DEFINITIONS kSomeConstant=value'
 ```
 
-Be sure to escape any quotation marks when using strings. 
+Be sure to escape any quotation marks when using strings.
 
 ### Renaming BlackHole
 
-To customize BlackHole it is required to change the following constants. 
+To customize BlackHole it is required to change the following constants.
+
 - `kDriver_Name`
 - `kPlugIn_BundleID` (note that this must match the target bundleID)
 - `kPlugIn_Icon`
 
-These can specified as pre-compiler constants using ```xcodebuild```.
+These can specified as pre-compiler constants using `xcodebuild`.
 
 ```bash
 driverName="BlackHole"
@@ -190,13 +193,13 @@ xcodebuild \
 
 `kNumber_Of_Channels` is used to set the number of channels. Be careful when specifying high channel counts. Although BlackHole is designed to be extremely efficient at higher channel counts it's possible that your computer might not be able to keep up. Sample rates play a roll as well. Don't use high sample rates with a high number of channels. Some applications don't know how to handle high channel counts. Proceed with caution.
 
-`kLatency_Frame_Size` is how much time in frames that the driver has to process incoming and outgoing audio. It can be used to delay the audio inside of BlackHole up to a maximum of 65536 frames. This may be helpful if using BlackHole with a high channel count. 
+`kLatency_Frame_Size` is how much time in frames that the driver has to process incoming and outgoing audio. It can be used to delay the audio inside of BlackHole up to a maximum of 65536 frames. This may be helpful if using BlackHole with a high channel count.
 
 `kSampleRates` set the sample rate or sample rates of the audio device. If using multiple sample rates separate each with a comma (`,`). For example: `kSampleRates='44100,48000'`.
 
 ### Mirror Device
 
-By default BlackHole has a hidden mirrored audio device. The devices may be customized using the following constants. 
+By default BlackHole has a hidden mirrored audio device. The devices may be customized using the following constants.
 
 ```
 // Original Device
@@ -230,7 +233,7 @@ kDevice2_HasOutput=true
 
 In this situation we have two BlackHole devices. One will have inputs only and the other will have outputs only.
 
-One way to use this in projects is to hide the mirrored device and use it behind the scenes. That way the user will see an input only device while routing audio through to the output behind them scenes. 
+One way to use this in projects is to hide the mirrored device and use it behind the scenes. That way the user will see an input only device while routing audio through to the output behind them scenes.
 
 Hidden audio devices can be accessed using `kAudioHardwarePropertyTranslateUIDToDevice`.
 
@@ -268,13 +271,13 @@ This format is lossless for up to 24-bit integer. All applications should be abl
 
 ### How can I change the volume of a Multi-Output device?
 
-Unfortunately macOS does not support changing the volume of a Multi-Output device but you can set the volume of individual devices in Audio MIDI Setup. 
+Unfortunately macOS does not support changing the volume of a Multi-Output device but you can set the volume of individual devices in Audio MIDI Setup.
 
-### Why is nothing playing through BlackHole? 
+### Why is nothing playing through BlackHole?
 
-- Check `System Preferences` → `Security & Privacy` → `Privacy` → `Microphone` to make sure your digital audio workstation (DAW) application has microphone access. 
+- Check `System Preferences` → `Security & Privacy` → `Privacy` → `Microphone` to make sure your digital audio workstation (DAW) application has microphone access.
 
-- Check that the volume is all the way up on BlackHole input and output in ``Audio MIDI Setup``.
+- Check that the volume is all the way up on BlackHole input and output in `Audio MIDI Setup`.
 
 - If you are using a multi-output device, due to issues with macOS the Built-in Output must be enabled and listed as the top device in the Multi-Output. [See here for details](https://github.com/ExistentialAudio/BlackHole/wiki/Multi-Output-Device#4-select-output-devices).
 
@@ -296,7 +299,7 @@ Unfortunately multi-outputs can be buggy and some apps won't work with them at a
 
 ### AirPods with an Aggregate/Multi-Output is not working.
 
-The microphone from AirPods runs at a lower sample rate which means it should not be used as the primary/clock device in an Aggregate or Multi-Output device. The solution is to use your built-in speakers (and just mute them) or BlackHole 2ch as the primary/clock device. BlackHole 16ch will not work as the primary since the primary needs to have 2ch. 
+The microphone from AirPods runs at a lower sample rate which means it should not be used as the primary/clock device in an Aggregate or Multi-Output device. The solution is to use your built-in speakers (and just mute them) or BlackHole 2ch as the primary/clock device. BlackHole 16ch will not work as the primary since the primary needs to have 2ch.
 
 Read [this discussion](https://github.com/ExistentialAudio/BlackHole/issues/146) for more details.
 
@@ -305,8 +308,11 @@ Read [this discussion](https://github.com/ExistentialAudio/BlackHole/issues/146)
 BlackHole is licensed under GPL-3.0. You can use BlackHole as long as your app is also licensed as GPL-3.0. For all other applications please [contact Existential Audio directly](mailto:devinroth@existential.audio).
 
 ## Links and Resources
-### [MultiSoundChanger](https://github.com/rlxone/MultiSoundChanger)
-A small tool for changing sound volume even for aggregate devices cause native sound volume controller can't change volume of aggregate devices
-### [BackgroundMusic](https://github.com/kyleneideck/BackgroundMusic)
-Background Music, a macOS audio utility: automatically pause your music, set individual apps' volumes and record system audio.
 
+### [MultiSoundChanger](https://github.com/rlxone/MultiSoundChanger)
+
+A small tool for changing sound volume even for aggregate devices cause native sound volume controller can't change volume of aggregate devices
+
+### [BackgroundMusic](https://github.com/kyleneideck/BackgroundMusic)
+
+Background Music, a macOS audio utility: automatically pause your music, set individual apps' volumes and record system audio.

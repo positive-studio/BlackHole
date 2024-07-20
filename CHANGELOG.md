@@ -1,4 +1,4 @@
-#  BlackHole Changelog
+# BlackHole Changelog
 
 All notable changes to this project will be documented in this file.
 
@@ -12,20 +12,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Create multi-output / aggregate device with installer.
 - Keep track of which apps are connected to the driver.
 
-
 ## [Unreleased]
 
 ### Changed
 
-## [0.6.0] -  Mar 22, 2024
+## [0.6.0] - Mar 22, 2024
 
 ## Added
+
 Added precompiler constant for kCanBeDefaultDevice and kCanBeDefaultSystemDevice.
 
 ## Changed
-Updated postinstall script to use 'kill' instead of 'kickstart'.
-Updated strings for model name, 
 
+Updated postinstall script to use 'kill' instead of 'kickstart'.
+Updated strings for model name,
 
 ## [0.5.1] - 2023-11-06
 
@@ -61,14 +61,14 @@ Updated strings for model name,
 ### Added
 
 - Hidden duplicate device.
-- Ability to easily modify device streams. 
+- Ability to easily modify device streams.
 - Builds multiple versions.
-- create_installer.sh to easily build multiple channel versions. 
+- create_installer.sh to easily build multiple channel versions.
 
 ### Changed
 
 - Fix potential memory leak.
-- Fix dropouts when experiencing minor loads. 
+- Fix dropouts when experiencing minor loads.
 
 ## [0.3.0] - 2021-12-07
 
@@ -82,7 +82,7 @@ Updated strings for model name,
 - Fixed various bugs.
 - Renamed constants and variables for consistency.
 - Connect input and output volume.
-- Connect input and output mute. 
+- Connect input and output mute.
 
 ## [0.2.10] - 2021-08-21
 
@@ -105,10 +105,10 @@ Updated strings for model name,
 
 ### Changed
 
-- Set deployment target to macOS 10.9. 
+- Set deployment target to macOS 10.9.
 - Fixed bug where there is a loud pop when audio starts.
 - Fix bug that caused crashes in certain situations. (Issue #206)
-- Disable Volume and Mute controls on input. They are only needed on the output. 
+- Disable Volume and Mute controls on input. They are only needed on the output.
 - Fix clock bug.
 - Automatically change UIDs to include the number of channels. Makes it easier to build and install multiple versions. Ex: BlackHole2ch_UID
 
@@ -117,7 +117,7 @@ Updated strings for model name,
 ### Changed
 
 - Improved Logarithmic Volume Control.
-- Various updates to README. 
+- Various updates to README.
 
 ### Added
 
@@ -141,7 +141,7 @@ Updated strings for model name,
 
 ### Added
 
-- Ability to mute and changed volume on input and out of BlackHole. 
+- Ability to mute and changed volume on input and out of BlackHole.
 
 ## [0.2.3] - 2019-11-22
 
